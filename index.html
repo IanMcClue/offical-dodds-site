@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="OFFICAL DODDS. The future, remembered. Enter a world of sculptural type, cool metal and deep blue.">
+  <title>OFFICAL DODDS — The future, remembered.</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/syne.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="system-bar">
+    <a href="#start" class="brand-link" aria-label="OFFICAL DODDS home">OFFICAL DODDS</a>
+    <span class="system-label">THE FUTURE, REMEMBERED.</span>
+    <button class="sound-toggle" type="button" aria-pressed="false"><span class="status-dot"></span>SOUND <span id="sound-status">OFF</span></button>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="pill-stack" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Main menu" hidden>
+    <div class="mobile-menu-heading"><span>SELECT A DESTINATION</span><span>OD / 001</span></div>
+    <div class="mobile-menu-items" id="mobile-menu-items"></div>
+  </nav>
+
+  <main class="console" id="console">
+    <div class="world" aria-hidden="true">
+      <div class="blue-field"></div>
+      <div class="orbital orbital-one"></div>
+      <div class="orbital orbital-two"></div>
+      <div class="avatar-shadow">OD</div>
+      <div class="avatar">OD</div>
+      <div class="horizon"></div>
+      <div class="scanlines"></div>
+    </div>
+
+    <nav class="menu" aria-label="Main menu">
+      <svg class="menu-art" viewBox="0 0 560 720" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Select a destination">
+        <defs>
+          <linearGradient id="menu-fill" x1="0" y1="0" x2=".28" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#dceef5"/><stop offset=".16" stop-color="#b4cedc"/><stop offset=".62" stop-color="#9bbaca"/><stop offset=".94" stop-color="#c9e5ef"/><stop offset="1" stop-color="#6c899f"/>
+          </linearGradient>
+          <linearGradient id="selected-fill" x1="0" y1="0" x2="1" y2=".5">
+            <stop stop-color="#0a275c"/><stop offset=".4" stop-color="#255cff"/><stop offset=".85" stop-color="#255cff"/><stop offset="1" stop-color="#95c7ff"/>
+          </linearGradient>
+          <linearGradient id="metal" x1="0" y1="0" x2="1" y2=".7">
+            <stop stop-color="#f5f8fc"/><stop offset=".22" stop-color="#c6cfda"/><stop offset=".4" stop-color="#f5f8fc"/><stop offset=".49" stop-color="#71859b"/><stop offset=".53" stop-color="#344a6b"/><stop offset=".7" stop-color="#c6cfda"/><stop offset="1" stop-color="#f5f8fc"/>
+          </linearGradient>
+          <linearGradient id="dial-metal" x1="0" y1="0" x2=".8" y2="1">
+            <stop stop-color="#fff"/><stop offset=".32" stop-color="#e1e8ec"/><stop offset=".5" stop-color="#8496a8"/><stop offset=".7" stop-color="#e0e7ed"/><stop offset="1" stop-color="#9cacbd"/>
+          </linearGradient>
+          <radialGradient id="dial-glass" cx=".35" cy=".2" r=".9">
+            <stop stop-color="#17314a"/><stop offset=".55" stop-color="#081527"/><stop offset="1" stop-color="#020912"/>
+          </radialGradient>
+          <linearGradient id="field-fill" x1="0" y1="0" x2="1" y2=".2">
+            <stop stop-color="#738d9e"/><stop offset=".3" stop-color="#aacbd9"/><stop offset=".7" stop-color="#244a6b"/><stop offset="1" stop-color="#071426" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="panel-shadow" x="-20%" y="-30%" width="150%" height="170%"><feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#020713" flood-opacity=".6"/></filter>
+          <filter id="dial-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="5" dy="7" stdDeviation="6" flood-color="#020713" flood-opacity=".7"/></filter>
+          <pattern id="dial-lines" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 1H4" stroke="#bfe9ff" stroke-opacity=".065"/></pattern>
+          <clipPath id="dial-clip"><circle cx="105" cy="100" r="76"/></clipPath>
+        </defs>
+
+        <path class="menu-backplate" d="M0 0H360C456 58 418 130 421 213C425 303 504 362 453 461C414 538 490 631 490 720H0Z" fill="url(#field-fill)"/>
+        <path d="M318 -10C386 48 361 157 378 231S437 363 401 442S445 607 431 735" fill="none" stroke="#bfe9ff" stroke-opacity=".08" stroke-width="2"/>
+        <g id="menu-items"></g>
+
+        <path class="outer-rail" d="M-16 -12H182C227 38 231 131 185 179C158 208 112 218 81 218C28 338 4 476 23 604C28 647 38 690 51 735H13C-14 630 -21 523 -9 417C1 326 15 263 34 214L-16 201Z" fill="url(#metal)" stroke="#edf6ff" stroke-width="2"/>
+        <path d="M63 226C11 364 -6 542 43 720" fill="none" stroke="#465a70" stroke-width="4"/>
+        <path d="M55 226C5 365 -14 542 35 720" fill="none" stroke="#f5f8fc" stroke-opacity=".8" stroke-width="2"/>
+        <path d="M-7 261L17 276L8 329L-13 332" fill="none" stroke="#708496" stroke-width="4"/>
+        <path d="M-5 270L8 279L0 318" fill="none" stroke="#f5f8fc" stroke-width="3"/>
+
+        <g class="dial" filter="url(#dial-shadow)" aria-hidden="true">
+          <circle cx="105" cy="100" r="109" fill="#72899e" stroke="#20364c" stroke-width="3"/>
+          <circle cx="105" cy="100" r="104" fill="url(#dial-metal)" stroke="#f5f8fc" stroke-width="3"/>
+          <circle cx="105" cy="100" r="88" fill="#c6cfda" stroke="#7a8a99" stroke-width="2"/>
+          <circle cx="105" cy="100" r="79" fill="url(#dial-glass)" stroke="#eef5f9" stroke-width="4"/>
+          <g clip-path="url(#dial-clip)">
+            <path d="M27 61Q107 10 181 65V77Q109 45 27 87Z" fill="#bfe9ff" opacity=".1"/>
+            <rect x="25" y="22" width="160" height="158" fill="url(#dial-lines)"/>
+            <text x="105" y="116" class="dial-logo" text-anchor="middle">OD</text>
+            <text x="105" y="140" class="dial-caption" text-anchor="middle">SELECT / <tspan id="dial-number">01</tspan></text>
+          </g>
+          <path d="M95 17L105 7L115 17Z" fill="#071426"/>
+          <path d="M17 91L8 101L17 111Z" fill="#071426"/>
+          <path d="M193 91L202 101L193 111Z" fill="#071426"/>
+          <path d="M95 185L105 195L115 185Z" fill="#255cff"/>
+          <g stroke="#344a6b" stroke-width="3"><path d="M176 28L179 25M185 39L188 36M191 49L195 47M196 61L200 60"/></g>
+        </g>
+        <text class="rail-caption" x="81" y="701" transform="rotate(-90 81 701)" aria-hidden="true">OFFICAL DODDS / INTERFACE 001</text>
+      </svg>
+    </nav>
+
+    <section class="scene" aria-labelledby="scene-title">
+      <div class="scene-topline"><span id="scene-index">01 / 08</span><span>OFFICAL DODDS WORLD</span></div>
+      <div class="scene-heading" id="scene-heading">
+        <h1 id="scene-title" tabindex="-1">START</h1>
+        <p id="scene-description">The future, remembered.<br>A new transmission from OFFICAL DODDS.</p>
+      </div>
+      <div class="scene-content" id="scene-content"></div>
+      <div class="scene-signature" id="scene-signature">
+        <span class="signature-label">SCULPTURAL TYPE. COOL METAL. DEEP BLUE.</span>
+        <div class="wordmark">OFFICAL<br>DODDS</div>
+        <div class="signature-bottom"><span>INDEPENDENT BY DESIGN.</span><span>EST. TOMORROW</span></div>
+      </div>
+    </section>
+    <div class="side-code" aria-hidden="true">OD—001 / THE FUTURE, REMEMBERED.</div>
+    <div class="scene-corner" aria-hidden="true"><span></span><span></span><span></span></div>
+  </main>
+
+  <footer class="control-bar">
+    <span class="control-help"><span class="key">↑</span><span class="key">↓</span> SELECT <span class="control-divider"></span><span class="key enter-key">ENTER</span> OPEN</span>
+    <span class="mobile-help">OPEN THE MENU TO EXPLORE</span>
+    <span class="footer-center"><span class="live-dot"></span><span id="footer-status">AWAITING YOUR NEXT MOVE</span></span>
+    <button type="button" id="reset-button">RESET <span class="key">ESC</span></button>
+  </footer>
+</body>
+</html>
