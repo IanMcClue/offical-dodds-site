@@ -88,6 +88,12 @@ function setMobileMenu(open, restoreFocus = false) {
 }
 
 menuToggle.addEventListener('click', () => setMobileMenu(!mobileMenuOpen));
+menuToggle.addEventListener('keydown', event => {
+  if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+  event.preventDefault();
+  setMobileMenu(true);
+  mobileLinks[event.key === 'ArrowDown' ? 0 : mobileLinks.length - 1].focus();
+});
 mobileMenu.addEventListener('keydown', event => {
   const index = mobileLinks.indexOf(document.activeElement);
   if (index < 0) return;
